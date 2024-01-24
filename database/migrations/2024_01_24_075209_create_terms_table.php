@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('description');
             $table->float('is_published');
             $table->string('image');
+            $table->boolean('is_published')->nullable()->change();
             $table->softDeletes();
             $table->timestamps();
         });
