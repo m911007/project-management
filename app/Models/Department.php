@@ -16,4 +16,8 @@ class Department extends Model
     {
         return $this->hasMany(Course::class);
     }
+    public function Term(): HasMany
+    {
+        return $this->hasMany(Term::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -36,10 +37,10 @@ class Workout extends Model
         return $this->belongsTo(Session::class);
     }
 
-    // public function WorkOutQuiz():HasMany
-    // {
-    //     return $this->hasMany(WorkoutQuizLog::class);
-    // }
+    public function WorkOutQuiz():HasMany
+    {
+        return $this->hasMany(WorkoutQuizLog::class);
+    }
 
     public function User(): BelongsTo
     {

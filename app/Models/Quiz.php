@@ -23,5 +23,18 @@ class Quiz extends Model
             ->orderBy('order')
             ->withTimestamps();
     }
+    public function Workout(int $term_id, int $sesison_id, int $sessionable_id): HasOne
+    {
+        return $this->hasOne(Workout::class, 'activity_id', 'id')
+            ->where('term_id', $term_id)
+            ->where('sessionable_id',  $sessionable_id)
+            ->where('session_id', $sesison_id);
+    }
 
+
+    public function WorkoutForLearner()
+    {
+        return $this->hasOne(Workout::class, 'participant_id', 'id')
+            ->where('user_id', $this->user_id);
+    }
 }

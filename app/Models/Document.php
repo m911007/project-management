@@ -27,8 +27,22 @@ class Document extends Model
             ->withTimestamps();
     }
 
+    /**
+     * Sessions is pholymorph relationship
+     *
+     * @return MorphTo
+     */
     public function Sessions(): MorphTo
     {
         return $this->morphTo(Session::class);
+    }
+
+
+    public function Workout(int $term_id, int $sesison_id, int $sessionable_id): HasOne
+    {
+        return $this->hasOne(Workout::class, 'activity_id', 'id')
+            ->where('term_id', $term_id)
+            ->where('sessionable_id',  $sessionable_id)
+            ->where('session_id', $sesison_id);
     }
 }
