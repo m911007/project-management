@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -73,6 +76,17 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_FORCE_HTTPS') ?? false) {
             URL::forceScheme('https');
         }
+
+        Paginator::useBootstrap();
+
+        Blade::directive('svg', function ($value) {
+            return "
+                <?php
+                    echo $value + 1;
+                ?>
+            ";
+        });
+
     }
 
     private function configureApp(): void
