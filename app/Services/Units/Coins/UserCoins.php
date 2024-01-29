@@ -28,18 +28,20 @@ class UserCoins
      */
     public function getUserBadge(User $user): Badge|null
     {
-
-
-        $badge = Badge::where('min_coins', '>=', $user->coins)
-            ->where('max_coins', '<', $user->coins)
+        // dd($user->coins);
+        $badge = Badge::where('min_coins', '<=', $user->coins)
+            ->where('max_coins', '>', $user->coins)
             ->first();
 
-        if (empty($badge))
-            $badge = Badge::orderby('max_coins', 'desc')->first();
+        if (!$badge) {
+            $badge = Badge::orderBy('max_coins', 'desc')->first();
+        }
 
-        if (empty($badge))
+        if (!$badge) {
             $badge = Badge::factory()->create();
+        }
 
         return $badge;
     }
+
 }

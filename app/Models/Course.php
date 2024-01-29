@@ -27,9 +27,9 @@ class Course extends Model
         return $this->hasMany(Term::class);
     }
 
-    // public function getActivitylogOptions(): LogOptions
-    // {
-    //     return LogOptions::defaults()
-    //         ->logOnly(['title', 'department_id', '']);
-    // }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['title', 'department_id', '']);
+    }
 }
